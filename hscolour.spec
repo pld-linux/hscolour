@@ -1,7 +1,7 @@
 Summary:	Colourise Haskell code
 Name:		hscolour
 Version:	1.17
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages
 Source0:	http://hackage.haskell.org/packages/archive/%{name}/%{version}/%{name}-%{version}.tar.gz
@@ -57,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc %{name}-%{version}-doc/html
-%{_bindir}/HsColour
+%attr(755,root,root) %{_bindir}/HsColour
 %{_libdir}/%{ghcdir}/package.conf.d/%{name}.conf
 %{_libdir}/%{ghcdir}/%{name}-%{version}
 %{_datadir}/%{name}-%{version}
