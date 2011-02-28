@@ -1,7 +1,8 @@
+%define		pkgname	hscolour
 Summary:	Colourise Haskell code
 Name:		hscolour
 Version:	1.17
-Release:	3
+Release:	4
 License:	GPL
 Group:		Development/Languages
 Source0:	http://hackage.haskell.org/packages/archive/hscolour/%{version}/%{name}-%{version}.tar.gz
