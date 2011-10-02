@@ -2,7 +2,7 @@
 Summary:	Colourise Haskell code
 Name:		hscolour
 Version:	1.19
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages
 Source0:	http://hackage.haskell.org/packages/archive/hscolour/%{version}/%{name}-%{version}.tar.gz
