@@ -2,7 +2,7 @@
 Summary:	Colourise Haskell code
 Name:		hscolour
 Version:	1.19
-Release:	2
+Release:	3
 License:	GPL
 Group:		Development/Languages
 Source0:	http://hackage.haskell.org/packages/archive/hscolour/%{version}/%{name}-%{version}.tar.gz
@@ -11,27 +11,20 @@ URL:		http://www.cs.york.ac.uk/fp/darcs/hscolour/
 BuildRequires:	ghc >= 6.12.3
 BuildRequires:	rpmbuild(macros) >= 1.608
 %requires_eq	ghc
+Obsoletes:	hscolour-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # debuginfo is not useful for ghc
 %define		_enable_debug_packages	0
+
+# don't compress haddoc files
+%define		_noautocompressdoc	*.haddock
 
 %description
 hscolour is a small Haskell script to colourise Haskell code. It
 currently has six output formats: ANSI terminal codes, HTML 3.2 with
 font tags, HTML 4.01 with CSS, XHTML 1.0 with inline CSS styling,
 LaTeX, and mIRC chat codes.
-
-%package doc
-Summary:	HTML documentation for %{pkgname}
-Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla %{pkgname}
-Group:		Documentation
-
-%description doc
-HTML documentation for %{pkgname}.
-
-%description doc -l pl.UTF-8
-Dokumentacja w formacie HTML dla %{pkgname}.
 
 %prep
 %setup -q
@@ -54,7 +47,7 @@ runhaskell Setup.hs copy --destdir=$RPM_BUILD_ROOT
 
 # work around automatic haddock docs installation
 rm -rf %{name}-%{version}-doc
-cp -a $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/html %{name}-%{version}-doc
+cp -a $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} %{name}-%{version}-doc
 
 runhaskell Setup.hs register \
 	--gen-pkg-config=$RPM_BUILD_ROOT/%{_libdir}/%{ghcdir}/package.conf.d/%{name}.conf
@@ -70,11 +63,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc %{name}-%{version}-doc/*
 %attr(755,root,root) %{_bindir}/HsColour
 %{_libdir}/%{ghcdir}/package.conf.d/%{name}.conf
 %{_libdir}/%{ghcdir}/%{name}-%{version}
 %{_datadir}/%{name}-%{version}
-
-%files doc
-%defattr(644,root,root,755)
-%doc %{name}-%{version}-doc/*
