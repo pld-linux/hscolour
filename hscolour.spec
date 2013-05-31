@@ -1,12 +1,12 @@
 %define		pkgname	hscolour
 Summary:	Colourise Haskell code
 Name:		hscolour
-Version:	1.19
-Release:	3
+Version:	1.20.3
+Release:	1
 License:	GPL
 Group:		Development/Languages
 Source0:	http://hackage.haskell.org/packages/archive/hscolour/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a5203dc75fb759aaee29f73491fb55f8
+# Source0-md5:	86ab0303a023ac22617d14bbcd06eab8
 URL:		http://www.cs.york.ac.uk/fp/darcs/hscolour/
 BuildRequires:	ghc >= 6.12.3
 BuildRequires:	rpmbuild(macros) >= 1.608
@@ -46,8 +46,9 @@ install -d $RPM_BUILD_ROOT%{_libdir}/%{ghcdir}/package.conf.d
 runhaskell Setup.hs copy --destdir=$RPM_BUILD_ROOT
 
 # work around automatic haddock docs installation
-rm -rf %{name}-%{version}-doc
+%{__rm} -rf %{name}-%{version}-doc
 cp -a $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} %{name}-%{version}-doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 runhaskell Setup.hs register \
 	--gen-pkg-config=$RPM_BUILD_ROOT/%{_libdir}/%{ghcdir}/package.conf.d/%{name}.conf
