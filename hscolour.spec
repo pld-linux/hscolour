@@ -1,11 +1,13 @@
 %define		pkgname	hscolour
 Summary:	Colourise Haskell code
+Summary(pl.UTF-8):	Kolorowanie kodu w Haskellu
 Name:		hscolour
 Version:	1.20.3
 Release:	1
 License:	GPL
 Group:		Development/Languages
-Source0:	http://hackage.haskell.org/packages/archive/hscolour/%{version}/%{name}-%{version}.tar.gz
+#SourceDownload: http://hackage.haskell.org/package/hscolour
+Source0:	http://hackage.haskell.org/package/hscolour-%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	86ab0303a023ac22617d14bbcd06eab8
 URL:		http://www.cs.york.ac.uk/fp/darcs/hscolour/
 BuildRequires:	ghc >= 6.12.3
@@ -17,7 +19,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # debuginfo is not useful for ghc
 %define		_enable_debug_packages	0
 
-# don't compress haddoc files
+# don't compress haddock files
 %define		_noautocompressdoc	*.haddock
 
 %description
@@ -25,6 +27,12 @@ hscolour is a small Haskell script to colourise Haskell code. It
 currently has six output formats: ANSI terminal codes, HTML 3.2 with
 font tags, HTML 4.01 with CSS, XHTML 1.0 with inline CSS styling,
 LaTeX, and mIRC chat codes.
+
+%description -l pl.UTF-8
+hscolour to mały skrypt Haskella służący do kolorowania kodu w
+Haskellu. Obecnie ma sześć formatów wyjściowych: kody terminala ANSI,
+HTML 3.2 ze znacznikami fontów, HTML 4.01 z CSS, XHTML 1.0 z
+osadzonymi stylami CSS, LaTeX oraz kody mIRC-a.
 
 %prep
 %setup -q
@@ -51,7 +59,7 @@ cp -a $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} %{name}-%{version}-doc
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 runhaskell Setup.hs register \
-	--gen-pkg-config=$RPM_BUILD_ROOT/%{_libdir}/%{ghcdir}/package.conf.d/%{name}.conf
+	--gen-pkg-config=$RPM_BUILD_ROOT%{_libdir}/%{ghcdir}/package.conf.d/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
