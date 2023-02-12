@@ -3,7 +3,7 @@ Summary:	Colourise Haskell code
 Summary(pl.UTF-8):	Kolorowanie kodu w Haskellu
 Name:		hscolour
 Version:	1.24.4
-Release:	2
+Release:	3
 License:	GPL
 Group:		Development/Languages
 #SourceDownload: http://hackage.haskell.org/package/hscolour
